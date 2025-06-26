@@ -4,7 +4,7 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy only what's needed first (leveraging Docker layer caching)
+# Copy only the necessary files to cache dependencies
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
@@ -25,6 +25,6 @@ COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar demo.jar
 
 # Optional: set environment variable and expose port
 ENV PORT=8080
-#EXPOSE 8080
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "demo.jar"]
