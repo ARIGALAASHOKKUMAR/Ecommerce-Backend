@@ -8,7 +8,7 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Now copy the full source code
+# Now copy the full source code tfy
 COPY src ./src
 
 # Build the JAR
