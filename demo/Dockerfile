@@ -8,7 +8,7 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn dependency:go-offline
 
-# Now copy the full source code tfy
+# Now copy the full source code
 COPY src ./src
 
 # Build the JAR
@@ -25,6 +25,6 @@ COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar demo.jar
 
 # Optional: set environment variable and expose port
 ENV PORT=8080
-#EXPOSE 8080
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "demo.jar"]
